@@ -112,33 +112,42 @@ function App() {
   };
 
   const prevSlide = () => {
+
     if (imageList.children[0].classList.contains("active")) {
-        setState({ isActive1: false, isActive2: true })
-        slideImageLeft(0, 1)
-        slideImageLeft(1, 1)
-        scaleImage(1, 1)
-        fadeTextOut(0, 1)
-        fadeTextIn(1, 1)
-      } else if (imageList.children[1].classList.contains("active")) {
-        setState({ isActive2: false, isActive3: true });
-          slideImageLeft(1, 1)
-          slideImageLeft(2, 1)
-          scaleImage(2, 1)
-          fadeTextOut(1, 1)
-          fadeTextIn(2, 1)
-      } else if (imageList.children[2].classList.contains("active")) {
-        setState({ isActive1: true, isActive3: false })
-          slideImageRight(0, 1);
-          slideImageLeft(2, 1, 3);
-          slideImageLeft(0, 1, 0);
-          slideImageLeft(1, 0, 0);
-          scaleImage(0, 1);
-          fadeTextOut(2, 1);
-          fadeTextIn(0, 1);
+      setState({ isActive1: false, isActive3: true });
+      //Image transition
+      slideImageLeft(2, 0, 3);
+      slideImageLeft(2, 1, 2);
+      scaleImage(2, 1);
+      slideImageRight(0, 1);
+      slideImageRight(1, 1);
+      //content transtion
+      fadeTextOut(0, 1);
+      fadeTextIn(2, 1);
+    } else if (imageList.children[1].classList.contains("active")) {
+      setState({ isActive2: false, isActive1: true });
+      //Image transition
+      slideImageLeft(0, 0);
+      slideImageRight(0, 1, 0);
+      slideImageRight(1, 1, 0);
+      slideImageRight(2, 1, 2);
+      scaleImage(0, 1);
+      //content transtion
+      fadeTextOut(1, 1);
+      fadeTextIn(0, 1);
+    } else if (imageList.children[2].classList.contains("active")) {
+      setState({ isActive2: true, isActive3: false });
+      slideImageLeft(2, 1);
+      slideImageLeft(1, 0, 2);
+      slideImageLeft(1, 1);
+      scaleImage(1, 1);
+      //content transtion
+      fadeTextOut(2, 1);
+      fadeTextIn(1, 1);
     }
   }
-
-  return (
+    
+    return (
     <div className="testimonial-section">
     <div className="testimonial-container">
       <div className="arrows left" onClick={prevSlide}>
